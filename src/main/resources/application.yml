@@ -49,9 +49,9 @@ spring:
       database: ${MONGODB_DB}
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://${SQL_DB_HOST}:${SQL_DB_PORT}/${POSTGRES_DB}
-    username: ${SQL_DB_USER}
-    password: ${SQL_DB_PASS}
+    url: jdbc:postgresql://erp3.soict.ai:6543/erp_dev_2024
+    username: postgres
+    password: "0penerp@2023#"
     hikari: # reference: https://github:com/brettwooldridge/HikariCP#configuration-knobs-baby:
       maxLifetime: 30000
       leakDetectionThreshold: 30000
