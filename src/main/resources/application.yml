@@ -45,8 +45,8 @@ spring:
       #base-path: /rest
       detection-strategy: ANNOTATED
     mongodb:
-      uri: wmshai
-      database: mongodb+srv://taskmanagement:p9g4RtU73sT9zDWO@cluster0.ynihkab.mongodb.net/wmshai?retryWrites=true&w=majority
+      uri: mongodb+srv://taskmanagement:p9g4RtU73sT9zDWO@cluster0.ynihkab.mongodb.net/wmshai?retryWrites=true&w=majority
+      database: wmshai
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://erp3.soict.ai:6543/erp_dev_2024
