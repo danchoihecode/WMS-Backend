@@ -1,0 +1,87 @@
+server:
+  port: 8080
+  servlet:
+    context-path: '/api'
+  compression:
+    enabled: true # Enable response compression
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json # The comma-separated list of mime types that should be compressed
+    min-response-size: 2048 # Compress the response only if the response size is at least 2 KB
+
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
+spring:
+  profiles:
+    active: ors,opencage
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://erp3.soict.ai/iam/realms/OpenERP-Dev/protocol/openid-connect/certs
+  jmx:
+    enabled: false
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    expiretime: 12
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  mvc:
+    throw-exception-if-no-handler-found: true
+  data:
+    redis:
+      repositories:
+        enabled: false
+    rest:
+      #base-path: /rest
+      detection-strategy: ANNOTATED
+    mongodb:
+      uri: ${MONGODB_URI}
+      database: ${MONGODB_DB}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${SQL_DB_HOST}:${SQL_DB_PORT}/${POSTGRES_DB}
+    username: ${SQL_DB_USER}
+    password: ${SQL_DB_PASS}
+    hikari: # reference: https://github:com/brettwooldridge/HikariCP#configuration-knobs-baby:
+      maxLifetime: 30000
+      leakDetectionThreshold: 30000
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true # not recommended for production
+        order_inserts: true
+        jdbc:
+          batch_size: 50
+        ddl-auto: create
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework: INFO
+      springframework.security: TRACE
+
+content-repo:
+  url: 'http://localhost:8080/'
+
+postsys:
+  post_assign_delay: 500000000
+ors:
+  api-key: ${ORS_API_KEY}
+  url: https://api.openrouteservice.org/v2/directions/driving-car/geojson
+  matrix-url: https://api.openrouteservice.org/v2/matrix/driving-car
+opencage:
+  api-key: ${OPENCAGE_API_KEY}
+  url: https://api.opencagedata.com/geocode/v1/json
+
+
