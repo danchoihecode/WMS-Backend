@@ -45,8 +45,8 @@ spring:
       #base-path: /rest
       detection-strategy: ANNOTATED
     mongodb:
-      uri: ${MONGODB_URI}
-      database: ${MONGODB_DB}
+      uri: wmshai
+      database: mongodb+srv://taskmanagement:p9g4RtU73sT9zDWO@cluster0.ynihkab.mongodb.net/wmshai?retryWrites=true&w=majority
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://erp3.soict.ai:6543/erp_dev_2024
@@ -77,11 +77,11 @@ content-repo:
 postsys:
   post_assign_delay: 500000000
 ors:
-  api-key: ${ORS_API_KEY}
+  api-key: 5b3ce3597851110001cf62482bb93e451660484e863c1ab19cc3ee2c
   url: https://api.openrouteservice.org/v2/directions/driving-car/geojson
   matrix-url: https://api.openrouteservice.org/v2/matrix/driving-car
 opencage:
-  api-key: ${OPENCAGE_API_KEY}
+  api-key: 30a0d7e43a88487d9737f9ce40abffb8
   url: https://api.opencagedata.com/geocode/v1/json
 
 
