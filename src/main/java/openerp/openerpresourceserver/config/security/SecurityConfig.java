@@ -14,8 +14,7 @@ import org.springframework.security.web.savedrequest.NullRequestCache;
 public class SecurityConfig {
 
     @Bean
-    public Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter(
-    ) {
+    public Converter<Jwt, ? extends AbstractAuthenticationToken> jwtAuthenticationConverter() {
         final var jwtConverter = new Jwt2AuthenticationConverter();
 
         jwtConverter.setJwtGrantedAuthoritiesConverter(new Jwt2AuthoritiesConverter());
@@ -29,31 +28,18 @@ public class SecurityConfig {
         // Enable OAuth2 with custom authorities mapping
         http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
 
-//        // Enable anonymous
-//        http.anonymous();
+        // // Enable anonymous
+        // http.anonymous();
 
         // State-less session (state in access-token only)
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Disable CSRF because of state-less session-management
         http.csrf().disable();
+        http.cors();
 
-//        // Return 401 (unauthorized) instead of 302 (redirect to login) when authorization is missing or invalid
-//        http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
-//            response.addHeader(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Restricted Content\"");
-//            response.sendError(HttpStatus.UNAUTHORIZED.value(), HttpStatus.UNAUTHORIZED.getReasonPhrase());
-//        });
-//
-//        // If SSL enabled, disable http (https only)
-//        if (serverProperties.getSsl() != null && serverProperties.getSsl().isEnabled()) {
-//            http.requiresChannel().anyRequest().requiresSecure();
-//        }
-
-        // Route security
         http
                 .authorizeHttpRequests()
-//                .requestMatchers("/api/user/get-all").permitAll()
-//                .anyRequest().authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .requestCache()
@@ -68,5 +54,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-
-
