@@ -9,7 +9,7 @@ server:
 
 app:
   cors:
-    allowed-origins: http://localhost:3000
+    allowed-origins: https://wms-frontend-nu.vercel.app
 
 spring:
   profiles:
