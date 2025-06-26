@@ -49,7 +49,7 @@ public class ProductService {
 		Product product = productRepository.findById(productId).orElse(null);
 		if (product != null) {
 			// Tạo URL cho ảnh dựa trên imageId
-			String baseUrl = "https://wms-backend-production.up.railway.app"; // URL backend hoặc service hosting ảnh
+			String baseUrl = "https://wms-backend.up.railway.app"; // URL backend hoặc service hosting ảnh
 			product.setImageUrl(baseUrl + "/api/images/" + product.getImageId());
 		}
 		return product;
@@ -128,7 +128,7 @@ public class ProductService {
 	}
 
 	public Page<ProductResponse> getProducts(Pageable pageable, String searchTerm, UUID categoryId, String sortDir) {
-	    String baseUrl = "https://wms-backend-production.up.railway.app";
+	    String baseUrl = "https://wms-backend.up.railway.app";
 
 	    boolean isDesc = "desc".equalsIgnoreCase(sortDir);
 
@@ -149,7 +149,7 @@ public class ProductService {
 
 
 	public ProductDetailResponse getProductDetail(UUID productId) {
-		String baseUrl = "https://wms-backend-production.up.railway.app";
+		String baseUrl = "https://wms-backend.up.railway.app";
 		return productRepository.findProductDetailById(productId, baseUrl);
 	}
 
