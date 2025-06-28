@@ -62,7 +62,7 @@ spring:
         order_inserts: true
         jdbc:
           batch_size: 50
-        ddl-auto: create
+        ddl-auto: none
 
 logging:
   level:

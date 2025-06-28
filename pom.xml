@@ -15,7 +15,7 @@
 	<name>openerp-resource-server</name>
 	<description>WMS backend project</description>
 	<properties>
-		<java.version>20</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
